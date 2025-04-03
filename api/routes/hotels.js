@@ -1,8 +1,8 @@
 import express from "express";
 import Hotel from "../models/Hotel.js";
 import { createError } from "../utils/error.js";
-import { createHotel, deleteHotel, getAllHotels, getHotel, updateHotel } from "../controllers/hotel.js";
-import { verifyAdmin } from "../utils/verifyToken.js";
+import { countByCity, countByType, createHotel, deleteHotel, getAllHotels, getHotel, updateHotel } from "../controllers/hotel.js";
+import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
@@ -16,10 +16,11 @@ router.put("/:id", verifyAdmin, updateHotel);
 router.delete("/:id", verifyAdmin, deleteHotel);
 
 // GET
-router.get("/:id", verifyAdmin, getHotel);
+router.get("/find/:id", verifyAdmin, getHotel);
 
 // GET ALL
-router.get("/", verifyAdmin, getAllHotels);
+router.get("/", getAllHotels);  // This route handles featured hotels query
+router.get("/countByCity", countByCity);
+router.get("/countByType", countByType);
 
-
-export default router
+export default router;
