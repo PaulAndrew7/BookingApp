@@ -16,7 +16,7 @@ router.put("/:id", verifyAdmin, updateHotel);
 router.delete("/:id", verifyAdmin, deleteHotel);
 
 // GET
-router.get("/find/:id", verifyAdmin, getHotel);
+router.get("/find/:id", getHotel);
 
 // GET ALL
 router.get("/", getAllHotels);  // This route handles featured hotels query
